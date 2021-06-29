@@ -74,7 +74,16 @@ class Shoppingcart {
             shopcart.renderNewItem(productID);
             counter.textContent++;
         }
+    }
+    /**
+     * Calculate total amount per item in the row
+     */
+    calculateRowTotal(productID) {
+        let rowTotalAmount = document.querySelector(`.items_price[data-prod_id="${productID}"]`);
+        let itemQuantity = document.querySelector(`.items_quantity[data-prod_id="${productID}"]`).textContent;
 
+        let rowSum = (itemQuantity * productList.products[productID].price).toFixed(2);
+        rowTotalAmount.textContent = rowSum;
     }
 
     /**
@@ -94,5 +103,6 @@ let shopcart = new Shoppingcart();
 function addProductToShoppingcart(productID) {
     shopcart.addItem(productID);
     shopcart.adjustProductQuantity(productID);
-    shopcart.calculateTotal(productID);
+    shopcart.calculateRowTotal(productID);
+    shopcart.calculateTotal();
 }
