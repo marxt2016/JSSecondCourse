@@ -43,13 +43,17 @@ class GoodsList {
     }
     fetchGoods() {
         return new Promise((resolve) => {
-            makeGETRequest(`${API_URL}/catalogData.json`)
-                .then(goods => {
-                    this.goods = JSON.parse(goods);
-                    console.log('Fetch:', this.goods);
-                    resolve(goods);
-                });
+            setTimeout(() => {
+                makeGETRequest(`${API_URL}/catalogData.json`)
+                    .then(goods => {
+                        this.goods = JSON.parse(goods);
+                        console.log('Fetch:', this.goods);
+                        resolve(goods);
+                    })
+                    .catch(alert)
+                    .finally(console.log("Finally is always completed."));
 
+            }, 5000);
         })
     }
 
