@@ -19,7 +19,7 @@ console.log(replaceSingleQuotes(text));
 const nameEl = document.querySelector('#name');
 const emailEl = document.querySelector('#email');
 const phoneEl = document.querySelector('#phNumber');
-const form = document.querySelector('#signup');
+const form = document.querySelector('#form');
 
 const checkName = () => {
 
@@ -101,7 +101,7 @@ const showError = (input, message) => {
     formField.classList.add('error');
 
     // show the error message
-    const error = formField.querySelector('small');
+    const error = formField.querySelector('error');
     error.textContent = message;
 };
 
@@ -114,7 +114,7 @@ const showSuccess = (input) => {
     formField.classList.add('success');
 
     // hide the error message
-    const error = formField.querySelector('small');
+    const error = formField.querySelector('error');
     error.textContent = '';
 }
 
