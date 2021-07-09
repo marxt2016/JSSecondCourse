@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>eShop</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+    <div id="app">
+        <header>
+            <div>
+                <input type="text" v-model="searchLine" class="goods-search" placeholder="Search.." />
+                <button class="search-button" type="button"><i class="fa fa-search"></i></button>
+            </div>
+
+            <button class="cart-button" type="button" @click="show = !show"><img class="pict cart" src="img/cart.png"
+                    alt="cart">
+                <span class="counter">{{cartItems.length}}</span>
+            </button>
+
+            <shoppingcart inline-template :items="cartItems" class="shoppingcart" v-show="show">
+                <div>
+                    <div class="table_header table_row">
+                        <div>Name</div>
+                        <div>Items</div>
+                        <div>Price</div>
+                        <div>Action</div>
+                    </div>
+                    <div class="table_row" v-for="(item, id) in items">
+                        <div>{{item.title}}</div>
+                        <div>
+                            <span class="items_quantity">{{item.qty}}</span>
+                        </div>
+                        <div>
+                            <span class="items_price">$ {{ item.price }}</span>
+                        </div>
+                        <td>
+                            <button class="trash" @click="removeItem(id)"><i class="fa fa-trash"></i></button>
+                        </td>
+                    </div>
+                    <div class="total_cart" v-if="Total > 0">
+                        <div>Total $ <span class="counter_total">{{Total}}</span></div>
+                    </div>
+                    <div class="total_cart" v-else>
+                        <tr>
+                            <td colspan="4">Cart is empty</td>
+                        </tr>
+                    </div>
+
+                </div>
+            </shoppingcart>
+
+        </header>
+
+        <main>
+            <div class="goods-list">
+                <div class="goods-item" v-for="(good, id) in search">
+                    <img :src="good.image" alt="image" style="width: 100px">
+                    <p>{{ good.title }}</p>
+                    <p class="price">$ {{ good.price }}</p>
+                    <p><button @click="addToCart(good)">Add to Cart</button></p>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
