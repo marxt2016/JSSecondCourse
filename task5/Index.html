@@ -63,6 +63,11 @@
                     <p class="price">$ {{ good.price }}</p>
                     <p><button @click="addToCart(good)">Add to Cart</button></p>
                 </div>
+                <div class="total_cart" v-if="search.length===0">
+                    <tr>
+                        <td>Please change your search criteria</td>
+                    </tr>
+                </div>
             </div>
         </main>
     </div>

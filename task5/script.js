@@ -4,7 +4,7 @@ const API2_JSON = 'https://fakestoreapi.com/products?_limit';
 
 Vue.component('shoppingcart', {
     props: ['items'],
-    qty: 1,
+
     computed: {
         Total() {
             let total = 0;
@@ -62,10 +62,3 @@ const app = new Vue({
     }
 
 });
-
-
-
-
-
-
-
