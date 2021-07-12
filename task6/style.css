@@ -1,6 +1,7 @@
 * {
     margin: 0px;
     padding: 0px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 header {
@@ -36,13 +37,13 @@ header {
     width: 25%;
     min-width: 20px;
     text-align: center;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
+
     margin: 2%;
     padding: 1%;
 }
 
 .price {
-    color: grey;
+    color: rgb(231, 125, 143);
     font-size: 22px;
 }
 
@@ -82,7 +83,7 @@ button:hover {
 }
 .shoppingcart {
     position: absolute;
-    width: fit-content;
+    width: 400px;
     background: white;
     padding: 10px;
     border: 1px solid #dadada;

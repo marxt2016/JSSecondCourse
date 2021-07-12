@@ -1,5 +1,7 @@
 const API2_JSON = 'https://fakestoreapi.com/products?_limit';
 
+const hostBus = new Vue();
+
 // The shopping cart component
 
 Vue.component('shoppingcart', {
@@ -16,11 +18,23 @@ Vue.component('shoppingcart', {
     },
 
     methods: {
-        removeItem(id) {
-            this.items.splice(id, 1)
+        removeItem(idx) {
+            this.items.splice(idx, 1)
         }
     }
 })
+//--------goods list 
+Vue.component('goodslist', {
+    props: ['search'],
+
+    methods: {
+        addToCart(good) {
+            this.$emit('add-to-cart', good);
+        }
+    }
+})
+
+//---------goods list
 
 const app = new Vue({
     el: '#app',
@@ -39,10 +53,11 @@ const app = new Vue({
                 this.cartItems.push({ ...idToAdd, qty: 1 });
             } else {
                 itemInCart[0].qty++;
+                console.log(this.cartItems);
+                console.log(itemInCart[1]);
             }
             idToAdd.qty = 1;
         },
-
     },
 
     mounted() {
@@ -59,6 +74,12 @@ const app = new Vue({
                 return good.title.toLowerCase().includes(this.searchLine.toLowerCase())
             });
         }
+    },
+    created() {
+        hostBus.$on('add-to-cart', this.addToCart);
+    },
+    beforeDestroy() {
+        hostBus.$off('add-to-cart');
     }
 
 });

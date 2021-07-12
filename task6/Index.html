@@ -29,7 +29,7 @@
                         <div>Price</div>
                         <div>Action</div>
                     </div>
-                    <div class="table_row" v-for="(item, id) in items">
+                    <div class="table_row" v-for="(item, idx) in items">
                         <div>{{item.title}}</div>
                         <div>
                             <span class="items_quantity">{{item.qty}}</span>
@@ -38,7 +38,7 @@
                             <span class="items_price">$ {{ item.price }}</span>
                         </div>
                         <td>
-                            <button class="trash" @click="removeItem(id)"><i class="fa fa-trash"></i></button>
+                            <button class="trash" @click="removeItem(idx)"><i class="fa fa-trash"></i></button>
                         </td>
                     </div>
                     <div class="total_cart" v-if="Total > 0">
@@ -56,19 +56,21 @@
         </header>
 
         <main>
-            <div class="goods-list">
-                <div class="goods-item" v-for="(good, id) in search">
-                    <img :src="good.image" alt="image" style="width: 100px">
-                    <p>{{ good.title }}</p>
-                    <p class="price">$ {{ good.price }}</p>
-                    <p><button @click="addToCart(good)">Add to Cart</button></p>
+            <goodslist class="goods-list" inline-template :search="search" @add-to-cart="addToCart">
+                <div>
+                    <div class="goods-item" v-for="(good, id) in search">
+                        <img :src="good.image" alt="image" style="width: 100px">
+                        <p>{{ good.title }}</p>
+                        <p class="price">$ {{ good.price }}</p>
+                        <p><button @click="addToCart(good)">Add to Cart</button></p>
+                    </div>
+                    <div class="total_cart" v-if="search.length===0">
+                        <tr>
+                            <td>Please change your search criteria</td>
+                        </tr>
+                    </div>
                 </div>
-                <div class="total_cart" v-if="search.length===0">
-                    <tr>
-                        <td>Please change your search criteria</td>
-                    </tr>
-                </div>
-            </div>
+            </goodslist>
         </main>
     </div>
 
